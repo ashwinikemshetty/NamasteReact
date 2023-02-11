@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Namaste React</title>
-</head>
-<body>
-    <div id="root">
+  </head>
+  <body>
+    <div id="header">
+      <h1>Header</h1>
     </div>
-</body>
-<script>
-    const heading = document.createElement("h1");
-    heading.innerHTML = 'Namaste Everyone!';
-    const root = document.getElementById('root');
-    root.appendChild(heading)
-</script>
+    <!-- React will just load the app inside this div, so there can anything apart from this, this is how the React is library and can be injected in any part of the application-->
+    <div id="root">Not rendered</div>
+    <div id="footer">
+      <h1>Footer</h1>
+    </div>
+  </body>
+  <!-- The order of the scripts is important, as we first have to load the react and then we can use it-->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script>
+    // React is coming from CDN link (available in the browser - can test once we import the library)
+    // CreateElement takes 3 arguments - tag, props, children
+    const heading = React.createElement(
+      "h1",
+      {
+        id: "title",
+        className: "class",
+      },
+      "Namaste Everyone!"
+    );
+
+    // console.log(heading) -> at the end of the day, createElement returns an object
+    // At the end of the react element is an object
+
+    // This is the place I want to run the code, inside the div with id "root"
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+
+    // React will override the contents inside the root element with whatever is passed inside render
+    root.render(heading);
+  </script>
 </html>
